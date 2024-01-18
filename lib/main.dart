@@ -16,11 +16,8 @@ Future<void> main() async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
   initScreen = preferences.getInt('initScreen');
   await preferences.setInt('initScreen', 1);
-  //preferences.clear();
-  runApp(DevicePreview(
-    builder: (context) => const MyApp(), // Wrap your app
-  ));
-  //runApp(const MyApp());
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
