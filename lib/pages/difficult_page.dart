@@ -37,12 +37,16 @@ class _DifficultPageState extends State<DifficultPage> {
                 fit: BoxFit.cover,
                 image: AssetImage('assets/background2.png'))),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 20, left: 30, right: 15),
+              padding: const EdgeInsets.only(
+                top: 20,
+                left: 30,
+                right: 15,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   InkWell(
                       onTap: () {
@@ -159,57 +163,60 @@ class _DifficultPageState extends State<DifficultPage> {
               ),
             ),
             Expanded(
-              child: CarouselSlider(
-                  carouselController: carouselController,
-                  items: getLevelsDifficulty(),
-                  options: CarouselOptions(
-                    // /aspectRatio: 1,
-                    aspectRatio: 16 / 9,
-                    viewportFraction: 1,
-                    initialPage: 0,
-                    enableInfiniteScroll: true,
-                    reverse: false,
-                    enlargeCenterPage: true,
-                    enlargeFactor: 0.3,
-                    scrollDirection: Axis.horizontal,
-                  )),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: Row(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  InkWell(
-                      onTap: () {
-                        carouselController.previousPage();
-                      },
-                      child: Image.asset('assets/past.png')),
-                  const SizedBox(
-                    width: 18,
+                  CarouselSlider(
+                      carouselController: carouselController,
+                      items: getLevelsDifficulty(),
+                      options: CarouselOptions(
+                        // /aspectRatio: 1,
+                        height: 220,
+                        aspectRatio: 16 / 9,
+                        viewportFraction: 1,
+                        initialPage: 0,
+                        enableInfiniteScroll: true,
+                        reverse: false,
+                        enlargeCenterPage: true,
+                        enlargeFactor: 0.3,
+                        scrollDirection: Axis.horizontal,
+                      )),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            carouselController.previousPage();
+                          },
+                          child: Image.asset('assets/past.png')),
+                      const SizedBox(
+                        width: 18,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                                builder: (BuildContext context) =>
+                                    const LevelsPage()),
+                          );
+                        },
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Image.asset('assets/start.png'),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 18,
+                      ),
+                      InkWell(
+                          onTap: () {
+                            carouselController.nextPage();
+                          },
+                          child: Image.asset('assets/next.png'))
+                    ],
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                const LevelsPage()),
-                      );
-                    },
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Image.asset('assets/start.png'),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 18,
-                  ),
-                  InkWell(
-                      onTap: () {
-                        carouselController.nextPage();
-                      },
-                      child: Image.asset('assets/next.png'))
                 ],
               ),
             ),

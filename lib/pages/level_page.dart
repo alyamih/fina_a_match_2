@@ -92,208 +92,6 @@ class _LevelPageState extends State<LevelPage> {
                           )),
                     ],
                   ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Stack(
-                        alignment: Alignment.topCenter,
-                        clipBehavior: Clip.none,
-                        children: [
-                          Image.asset('assets/level_table.png'),
-                          Positioned(
-                              top: -20,
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Image.asset('assets/level_small_table.png'),
-                                  Positioned(
-                                    top: 30,
-                                    child: Stack(
-                                      children: <Widget>[
-                                        Text(
-                                          'LEVEL  ${game.currentLevel}',
-                                          style: TextStyle(
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w900,
-                                            fontSize: 20,
-                                            foreground: Paint()
-                                              ..style = PaintingStyle.stroke
-                                              ..strokeWidth = 6
-                                              ..color = const Color(0Xff59173E),
-                                          ),
-                                        ),
-                                        Text(
-                                          'LEVEL  ${game.currentLevel}',
-                                          style: const TextStyle(
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w900,
-                                            fontSize: 20,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              )),
-                          const Positioned(
-                              right: -120, top: 30, child: OtpTimer()),
-                          Positioned(
-                            top: game.currentLevel == 3
-                                ? 60
-                                : game.currentLevel == 4
-                                    ? 70
-                                    : game.currentLevel == 1
-                                        ? 60
-                                        : game.currentLevel == 2
-                                            ? 70
-                                            : 0,
-                            child: SizedBox(
-                                height: game.currentLevel == 3 ||
-                                        game.currentLevel == 4
-                                    ? 350
-                                    : game.currentLevel == 1
-                                        ? 200
-                                        : 250,
-                                width: game.currentLevel == 3 ||
-                                        game.currentLevel == 4
-                                    ? 350
-                                    : game.currentLevel == 1
-                                        ? 200
-                                        : 250,
-                                child: GridView.builder(
-                                    itemCount: game.gameImg!.length,
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: game.currentLevel == 3
-                                          ? 4
-                                          : game.currentLevel == 4
-                                              ? 5
-                                              : game.currentLevel == 1
-                                                  ? 2
-                                                  : 3,
-                                      crossAxisSpacing: 16.0,
-                                      mainAxisSpacing: 16.0,
-                                    ),
-                                    padding: const EdgeInsets.all(16.0),
-                                    itemBuilder: (context, index) {
-                                      return GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            //incrementing the clicks
-
-                                            game.gameImg![index] =
-                                                game.cards_list[index];
-                                            game.matchCheck.add({
-                                              index: game.cards_list[index]
-                                            });
-                                          });
-                                          if (game.matchCheck.length == 2) {
-                                            if (game.matchCheck[0].values
-                                                    .first ==
-                                                game.matchCheck[1].values
-                                                    .first) {
-                                              game.matchCheck.clear();
-                                              matchedCard = matchedCard + 2;
-                                              if (matchedCard ==
-                                                  game.gameImg!.length) {
-                                                Future.delayed(
-                                                    const Duration(
-                                                        milliseconds: 1000),
-                                                    () {
-                                                  if (game.currentLevel ==
-                                                      level1.levelNumber) {
-                                                    level1.isCompleted = true;
-                                                  } else if (game
-                                                          .currentLevel ==
-                                                      level2.levelNumber) {
-                                                    level2.isCompleted = true;
-                                                  } else if (game
-                                                          .currentLevel ==
-                                                      level3.levelNumber) {
-                                                    level3.isCompleted = true;
-                                                  } else if (game
-                                                          .currentLevel ==
-                                                      level4.levelNumber) {
-                                                    level4.isCompleted = true;
-                                                  }
-                                                  user.money =
-                                                      user.money! + 125;
-
-                                                  user.hp = user.hp! - 1;
-                                                  addSP(level1, level2, level3,
-                                                      level4, user);
-                                                  Navigator.of(context)
-                                                      .pushReplacement(
-                                                    MaterialPageRoute<void>(
-                                                        builder: (BuildContext
-                                                                context) =>
-                                                            const LevelOver()),
-                                                  );
-                                                  setState(() {});
-                                                });
-                                              }
-                                            } else {
-                                              Future.delayed(
-                                                  const Duration(
-                                                      milliseconds: 500), () {
-                                                setState(() {
-                                                  game.gameImg![game
-                                                      .matchCheck[0]
-                                                      .keys
-                                                      .first] = game.hiddenCard;
-                                                  game.gameImg![game
-                                                      .matchCheck[1]
-                                                      .keys
-                                                      .first] = game.hiddenCard;
-                                                  game.matchCheck.clear();
-                                                });
-                                              });
-                                            }
-                                          }
-                                        },
-                                        child: Stack(
-                                          alignment: Alignment.center,
-                                          children: [
-                                            Container(
-                                              padding:
-                                                  const EdgeInsets.all(16.0),
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                image: DecorationImage(
-                                                  image: AssetImage(game
-                                                                  .gameImg![
-                                                              index] !=
-                                                          "assets/gameIcons/icon_container.png"
-                                                      ? 'assets/gameIcons/icon_container.png'
-                                                      : 'assets/gameIcons/icon_container1.png'),
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                            game.gameImg![index] !=
-                                                    "assets/gameIcons/icon_container.png"
-                                                ? Positioned(
-                                                    bottom:
-                                                        game.currentLevel == 4
-                                                            ? 15
-                                                            : 20,
-                                                    child: Image.asset(
-                                                      game.gameImg![index],
-                                                      scale: 1.5,
-                                                    ),
-                                                  )
-                                                : const SizedBox()
-                                          ],
-                                        ),
-                                      );
-                                    })),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
                   Row(
                     children: [
                       Padding(
@@ -386,6 +184,201 @@ class _LevelPageState extends State<LevelPage> {
                       )
                     ],
                   )
+                ],
+              ),
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Stack(
+                    alignment: Alignment.topCenter,
+                    clipBehavior: Clip.none,
+                    children: [
+                      Image.asset(
+                        'assets/level_table.png',
+                        scale: 1.2,
+                      ),
+                      Positioned(
+                          top: -20,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Image.asset('assets/level_small_table.png'),
+                              Positioned(
+                                top: 30,
+                                child: Stack(
+                                  children: <Widget>[
+                                    Text(
+                                      'LEVEL  ${game.currentLevel}',
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 20,
+                                        foreground: Paint()
+                                          ..style = PaintingStyle.stroke
+                                          ..strokeWidth = 6
+                                          ..color = const Color(0Xff59173E),
+                                      ),
+                                    ),
+                                    Text(
+                                      'LEVEL  ${game.currentLevel}',
+                                      style: const TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )),
+                      const Positioned(right: -120, top: 30, child: OtpTimer()),
+                      Positioned(
+                        top: game.currentLevel == 3
+                            ? 60
+                            : game.currentLevel == 4
+                                ? 70
+                                : game.currentLevel == 1
+                                    ? 60
+                                    : game.currentLevel == 2
+                                        ? 70
+                                        : 0,
+                        child: SizedBox(
+                            height:
+                                game.currentLevel == 3 || game.currentLevel == 4
+                                    ? 350
+                                    : game.currentLevel == 1
+                                        ? 200
+                                        : 250,
+                            width:
+                                game.currentLevel == 3 || game.currentLevel == 4
+                                    ? 350
+                                    : game.currentLevel == 1
+                                        ? 200
+                                        : 250,
+                            child: GridView.builder(
+                                itemCount: game.gameImg!.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: game.currentLevel == 3
+                                      ? 4
+                                      : game.currentLevel == 4
+                                          ? 5
+                                          : game.currentLevel == 1
+                                              ? 2
+                                              : 3,
+                                  crossAxisSpacing: 16.0,
+                                  mainAxisSpacing: 16.0,
+                                ),
+                                padding: const EdgeInsets.all(16.0),
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        //incrementing the clicks
+
+                                        game.gameImg![index] =
+                                            game.cards_list[index];
+                                        game.matchCheck.add(
+                                            {index: game.cards_list[index]});
+                                      });
+                                      if (game.matchCheck.length == 2) {
+                                        if (game.matchCheck[0].values.first ==
+                                            game.matchCheck[1].values.first) {
+                                          game.matchCheck.clear();
+                                          matchedCard = matchedCard + 2;
+                                          if (matchedCard ==
+                                              game.gameImg!.length) {
+                                            Future.delayed(
+                                                const Duration(
+                                                    milliseconds: 1000), () {
+                                              if (game.currentLevel ==
+                                                  level1.levelNumber) {
+                                                level1.isCompleted = true;
+                                              } else if (game.currentLevel ==
+                                                  level2.levelNumber) {
+                                                level2.isCompleted = true;
+                                              } else if (game.currentLevel ==
+                                                  level3.levelNumber) {
+                                                level3.isCompleted = true;
+                                              } else if (game.currentLevel ==
+                                                  level4.levelNumber) {
+                                                level4.isCompleted = true;
+                                              }
+                                              user.money = user.money! + 125;
+
+                                              user.hp = user.hp! - 1;
+                                              addSP(level1, level2, level3,
+                                                  level4, user);
+                                              Navigator.of(context)
+                                                  .pushReplacement(
+                                                MaterialPageRoute<void>(
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        const LevelOver()),
+                                              );
+                                              setState(() {});
+                                            });
+                                          }
+                                        } else {
+                                          Future.delayed(
+                                              const Duration(milliseconds: 500),
+                                              () {
+                                            setState(() {
+                                              game.gameImg![game
+                                                  .matchCheck[0]
+                                                  .keys
+                                                  .first] = game.hiddenCard;
+                                              game.gameImg![game
+                                                  .matchCheck[1]
+                                                  .keys
+                                                  .first] = game.hiddenCard;
+                                              game.matchCheck.clear();
+                                            });
+                                          });
+                                        }
+                                      }
+                                    },
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.all(16.0),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            image: DecorationImage(
+                                              image: AssetImage(game
+                                                          .gameImg![index] !=
+                                                      "assets/gameIcons/icon_container.png"
+                                                  ? 'assets/gameIcons/icon_container.png'
+                                                  : 'assets/gameIcons/icon_container1.png'),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                        game.gameImg![index] !=
+                                                "assets/gameIcons/icon_container.png"
+                                            ? Positioned(
+                                                bottom: game.currentLevel == 4
+                                                    ? 15
+                                                    : 20,
+                                                child: Image.asset(
+                                                  game.gameImg![index],
+                                                  scale: 1.5,
+                                                ),
+                                              )
+                                            : const SizedBox()
+                                      ],
+                                    ),
+                                  );
+                                })),
+                      )
+                    ],
+                  ),
                 ],
               ),
             ),

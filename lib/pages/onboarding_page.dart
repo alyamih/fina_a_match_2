@@ -26,34 +26,42 @@ class _OnBoardingState extends State<OnBoarding> {
                           Colors.black.withOpacity(0.5), BlendMode.darken),
                       fit: BoxFit.cover,
                       image: const AssetImage('assets/background1.png'))),
-            ),
-            Positioned(
-              right: 40,
-              top: 70,
-              child: Column(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if (page == 1) Image.asset('assets/onBoardingText1.png'),
-                  if (page == 2) Image.asset('assets/onBoardingText2.png'),
-                  if (page == 3) Image.asset('assets/onBoardingText3.png'),
-                  InkWell(
-                      onTap: () {
-                        if (page < 3) {
-                          page++;
-                          setState(() {});
-                        } else {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute<void>(
-                                builder: (BuildContext context) =>
-                                    const DifficultPage()),
-                          );
-                        }
-                      },
-                      child: Image.asset('assets/button.png')),
+                  Image.asset('assets/tiger1.png'),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 20),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            if (page == 1)
+                              Image.asset('assets/onBoardingText1.png'),
+                            if (page == 2)
+                              Image.asset('assets/onBoardingText2.png'),
+                            if (page == 3)
+                              Image.asset('assets/onBoardingText3.png'),
+                            InkWell(
+                                onTap: () {
+                                  if (page < 3) {
+                                    page++;
+                                    setState(() {});
+                                  } else {
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute<void>(
+                                          builder: (BuildContext context) =>
+                                              const DifficultPage()),
+                                    );
+                                  }
+                                },
+                                child: Image.asset('assets/button.png')),
+                          ]),
+                    ),
+                  ),
                 ],
               ),
             ),
-            Positioned(top: 130, child: Image.asset('assets/tiger1.png'))
           ],
         ),
       ),

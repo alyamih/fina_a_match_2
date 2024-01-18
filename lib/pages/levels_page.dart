@@ -202,198 +202,208 @@ class _LevelsPageState extends State<LevelsPage> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 50, right: 20, left: 50),
-              child: Stack(
-                alignment: Alignment.center,
-                clipBehavior: Clip.none,
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('assets/Vector.png'),
-                  Positioned(
-                      left: -50,
-                      top: 45,
-                      child: InkWell(
-                          onTap: () {
-                            if (user.hp != 0) {
-                              if (!level1.isCompleted!) {
-                                game.currentLevel = level1.levelNumber;
-                                game.initCards();
-                                game.initGame();
-                                setState(() {});
-                              }
-                            } else {
-                              hpDialog(context);
-                            }
-                          },
-                          child: Stack(
-                            clipBehavior: Clip.none,
-                            alignment: Alignment.topCenter,
-                            children: [
-                              Image.asset('assets/level1.png'),
-                              if (level1.isCompleted!)
-                                Positioned(
-                                    top: -5,
-                                    child: Image.asset('assets/Star.png')),
-                            ],
-                          ))),
-                  Positioned(
-                      left: -15,
-                      top: -50,
-                      child: InkWell(
-                          onTap: () {
-                            if (user.hp != 0) {
-                              if (!level2.isCompleted!) {
-                                game.currentLevel = level2.levelNumber;
-                                game.initCards();
-                                game.initGame();
-                                setState(() {});
-                              }
-                            } else {
-                              hpDialog(context);
-                            }
-                          },
-                          child: Stack(
-                            clipBehavior: Clip.none,
-                            alignment: Alignment.topCenter,
-                            children: [
-                              Image.asset('assets/level2.png'),
-                              if (level2.isCompleted!)
-                                Positioned(
-                                    top: 5,
-                                    left: 60,
-                                    child: Image.asset('assets/Star.png')),
-                            ],
-                          ))),
-                  Positioned(
-                      left: 100,
-                      top: 30,
-                      child: InkWell(
-                          onTap: () {
-                            if (user.hp != 0) {
-                              if (!level3.isCompleted!) {
-                                game.currentLevel = level3.levelNumber;
-                                game.initCards();
-                                game.initGame();
-                                setState(() {});
-                              }
-                            } else {
-                              hpDialog(context);
-                            }
-                          },
-                          child: Stack(
-                            clipBehavior: Clip.none,
-                            alignment: Alignment.topCenter,
-                            children: [
-                              Image.asset('assets/level3.png'),
-                              if (level3.isCompleted!)
-                                Positioned(
-                                    top: 5,
-                                    left: 60,
-                                    child: Image.asset('assets/Star.png')),
-                            ],
-                          ))),
-                  Positioned(
-                      left: 170,
-                      top: -60,
-                      child: InkWell(
-                          onTap: () {
-                            if (user.hp != 0) {
-                              if (!level4.isCompleted!) {
-                                game.currentLevel = level4.levelNumber;
-                                game.initCards();
-                                game.initGame();
-                                setState(() {});
-                              }
-                            } else {
-                              hpDialog(context);
-                            }
-                          },
-                          child: Stack(
-                            clipBehavior: Clip.none,
-                            alignment: Alignment.topCenter,
-                            children: [
-                              Image.asset('assets/level4.png'),
-                              if (level4.isCompleted!)
-                                Positioned(
-                                    top: 5,
-                                    left: 60,
-                                    child: Image.asset('assets/Star.png')),
-                            ],
-                          ))),
-                  Positioned(
-                      left: 260,
-                      top: 30,
-                      child: InkWell(
-                          onTap: () {
-                            hpDialog(context);
-                          },
-                          child: Image.asset('assets/level5.png'))),
-                  Positioned(
-                      left: 350,
-                      top: -60,
-                      child: InkWell(
-                          onTap: () {
-                            hpDialog(context);
-                          },
-                          child: Image.asset('assets/level6.png'))),
-                  Positioned(
-                      left: 445,
-                      top: 30,
-                      child: InkWell(
-                          onTap: () {
-                            hpDialog(context);
-                          },
-                          child: Image.asset('assets/level7.png'))),
-                  Positioned(
-                      left: 550,
-                      top: -60,
-                      child: InkWell(
-                          onTap: () {
-                            hpDialog(context);
-                          },
-                          child: Image.asset('assets/level9.png'))),
-                  Positioned(
-                      left: 590,
-                      top: 40,
-                      child: InkWell(
-                          onTap: () {
-                            hpDialog(context);
-                          },
-                          child: Image.asset('assets/level8.png'))),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 50, right: 20, left: 50),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      clipBehavior: Clip.none,
+                      children: [
+                        Image.asset('assets/Vector.png'),
+                        Positioned(
+                            left: -50,
+                            top: 45,
+                            child: InkWell(
+                                onTap: () {
+                                  if (user.hp != 0) {
+                                    if (!level1.isCompleted!) {
+                                      game.currentLevel = level1.levelNumber;
+                                      game.initCards();
+                                      game.initGame();
+                                      setState(() {});
+                                    }
+                                  } else {
+                                    hpDialog(context);
+                                  }
+                                },
+                                child: Stack(
+                                  clipBehavior: Clip.none,
+                                  alignment: Alignment.topCenter,
+                                  children: [
+                                    Image.asset('assets/level1.png'),
+                                    if (level1.isCompleted!)
+                                      Positioned(
+                                          top: -5,
+                                          child:
+                                              Image.asset('assets/Star.png')),
+                                  ],
+                                ))),
+                        Positioned(
+                            left: -15,
+                            top: -50,
+                            child: InkWell(
+                                onTap: () {
+                                  if (user.hp != 0) {
+                                    if (!level2.isCompleted!) {
+                                      game.currentLevel = level2.levelNumber;
+                                      game.initCards();
+                                      game.initGame();
+                                      setState(() {});
+                                    }
+                                  } else {
+                                    hpDialog(context);
+                                  }
+                                },
+                                child: Stack(
+                                  clipBehavior: Clip.none,
+                                  alignment: Alignment.topCenter,
+                                  children: [
+                                    Image.asset('assets/level2.png'),
+                                    if (level2.isCompleted!)
+                                      Positioned(
+                                          top: 5,
+                                          left: 60,
+                                          child:
+                                              Image.asset('assets/Star.png')),
+                                  ],
+                                ))),
+                        Positioned(
+                            left: 100,
+                            top: 30,
+                            child: InkWell(
+                                onTap: () {
+                                  if (user.hp != 0) {
+                                    if (!level3.isCompleted!) {
+                                      game.currentLevel = level3.levelNumber;
+                                      game.initCards();
+                                      game.initGame();
+                                      setState(() {});
+                                    }
+                                  } else {
+                                    hpDialog(context);
+                                  }
+                                },
+                                child: Stack(
+                                  clipBehavior: Clip.none,
+                                  alignment: Alignment.topCenter,
+                                  children: [
+                                    Image.asset('assets/level3.png'),
+                                    if (level3.isCompleted!)
+                                      Positioned(
+                                          top: 5,
+                                          left: 60,
+                                          child:
+                                              Image.asset('assets/Star.png')),
+                                  ],
+                                ))),
+                        Positioned(
+                            left: 170,
+                            top: -60,
+                            child: InkWell(
+                                onTap: () {
+                                  if (user.hp != 0) {
+                                    if (!level4.isCompleted!) {
+                                      game.currentLevel = level4.levelNumber;
+                                      game.initCards();
+                                      game.initGame();
+                                      setState(() {});
+                                    }
+                                  } else {
+                                    hpDialog(context);
+                                  }
+                                },
+                                child: Stack(
+                                  clipBehavior: Clip.none,
+                                  alignment: Alignment.topCenter,
+                                  children: [
+                                    Image.asset('assets/level4.png'),
+                                    if (level4.isCompleted!)
+                                      Positioned(
+                                          top: 5,
+                                          left: 60,
+                                          child:
+                                              Image.asset('assets/Star.png')),
+                                  ],
+                                ))),
+                        Positioned(
+                            left: 260,
+                            top: 30,
+                            child: InkWell(
+                                onTap: () {
+                                  hpDialog(context);
+                                },
+                                child: Image.asset('assets/level5.png'))),
+                        Positioned(
+                            left: 350,
+                            top: -60,
+                            child: InkWell(
+                                onTap: () {
+                                  hpDialog(context);
+                                },
+                                child: Image.asset('assets/level6.png'))),
+                        Positioned(
+                            left: 445,
+                            top: 30,
+                            child: InkWell(
+                                onTap: () {
+                                  hpDialog(context);
+                                },
+                                child: Image.asset('assets/level7.png'))),
+                        Positioned(
+                            left: 550,
+                            top: -60,
+                            child: InkWell(
+                                onTap: () {
+                                  hpDialog(context);
+                                },
+                                child: Image.asset('assets/level9.png'))),
+                        Positioned(
+                            left: 590,
+                            top: 40,
+                            child: InkWell(
+                                onTap: () {
+                                  hpDialog(context);
+                                },
+                                child: Image.asset('assets/level8.png'))),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 50),
+                    child: InkWell(
+                        onTap: () {
+                          if (game.currentLevel != null) {
+                            Navigator.of(context).push(
+                              MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>
+                                      const LevelPage()),
+                            );
+                          }
+                        },
+                        child: Stack(
+                          children: [
+                            Image.asset('assets/start_game_grass.png'),
+                            if (game.currentLevel == null)
+                              Positioned(
+                                left: 13,
+                                top: 15,
+                                child: Container(
+                                  width: 281,
+                                  height: 76,
+                                  decoration: BoxDecoration(
+                                      color: Colors.black.withOpacity(0.3)),
+                                ),
+                              )
+                          ],
+                        )),
+                  )
                 ],
               ),
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 70),
-                child: InkWell(
-                    onTap: () {
-                      if (game.currentLevel != null) {
-                        Navigator.of(context).push(
-                          MaterialPageRoute<void>(
-                              builder: (BuildContext context) =>
-                                  const LevelPage()),
-                        );
-                      }
-                    },
-                    child: Stack(
-                      children: [
-                        Image.asset('assets/start_game_grass.png'),
-                        if (game.currentLevel == null)
-                          Positioned(
-                            left: 13,
-                            top: 15,
-                            child: Container(
-                              width: 281,
-                              height: 76,
-                              decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.3)),
-                            ),
-                          )
-                      ],
-                    )),
-              ),
-            )
           ],
         ),
       ),
